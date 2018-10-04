@@ -1,6 +1,6 @@
 # KVM-Kernel Example
 
-The source code here contains examples on my blog: [Learning KVM - implement your own Linux kernel](https://david942j.blogspot.com/2018/10/note-learning-kvm-implement-your-own.html).
+The source code are examples on my blog: [Learning KVM - implement your own Linux kernel](https://david942j.blogspot.com/2018/10/note-learning-kvm-implement-your-own.html).
 
 I've described how to implement a KVM-based hypervisor and key points to implement Linux kernel on my blog.
 You can leave comments in the blog or file issues here if you have questions or find any bugs.
