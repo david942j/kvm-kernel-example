@@ -167,6 +167,14 @@ VM* kvm_init(uint8_t code[], size_t len) {
   return vm;
 }
 
+int check_iopl(VM *vm) {
+  struct kvm_regs regs;
+  struct kvm_sregs sregs;
+  if(ioctl(vm->vcpufd, KVM_GET_REGS, &regs) < 0) pexit("ioctl(KVM_GET_REGS)");
+  if(ioctl(vm->vcpufd, KVM_GET_SREGS, &sregs) < 0) pexit("ioctl(KVM_GET_SREGS)");
+  return sregs.cs.dpl <= ((regs.rflags >> 12) & 3);
+}
+
 void execute(VM* vm) {
   while(1) {
     ioctl(vm->vcpufd, KVM_RUN, NULL);
@@ -176,6 +184,7 @@ void execute(VM* vm) {
       fprintf(stderr, "KVM_EXIT_HLT\n");
       return;
     case KVM_EXIT_IO:
+      if(!check_iopl(vm)) error("KVM_EXIT_SHUTDOWN\n");
       if(vm->run->io.port & HP_NR_MARK) {
         if(hp_handler(vm->run->io.port, vm) < 0) error("Hypercall failed\n");
       }
