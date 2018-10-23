@@ -119,8 +119,10 @@ static int handle_rw(VM* vm, typeof(read) fptr) {
     int fd = (int) kbuf[0];
     uint64_t paddr = kbuf[1];
     uint64_t nbytes = kbuf[2];
-
-    PROCESS_ON_FD(fptr(fd_map[fd].real_fd, MEM_AT(paddr), nbytes));
+    if(!(0 <= paddr && paddr <= paddr + nbytes && paddr + nbytes <= vm->mem_size))
+      ret = -EACCES;
+    else
+      PROCESS_ON_FD(fptr(fd_map[fd].real_fd, MEM_AT(paddr), nbytes));
 
   } THEN_RETURN(ret);
   return 0;
