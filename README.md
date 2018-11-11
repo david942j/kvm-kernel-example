@@ -18,13 +18,20 @@ A extremely simple Linux kernel, supports few syscalls.
 ### User
 
 Simple ELF(s) for testing our kernel.
+Pre-built user program was provided, and you can re-generate by the following commands:
+```sh
+$ pip2 install pwn
+$ cd user
+$ ./gen.py
+```
+NOTE: You have to install Python 2.x in advance.
 
 ### How to run
 
 ```sh
 $ git clone https://github.com/david942j/kvm-kernel-example
 $ cd kvm-kernel-example && make
-$ hypervisor/hypervisor.elf kernel/kernel.bin user/orw.elf /etc/os-release
+$ sudo hypervisor/hypervisor.elf kernel/kernel.bin user/orw.elf /etc/os-release
 # NAME="Ubuntu"
 # VERSION="18.04.1 LTS (Bionic Beaver)"
 # ID=ubuntu
