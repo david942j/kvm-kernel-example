@@ -31,7 +31,7 @@ NOTE: You have to install Python 2.x in advance.
 ```sh
 $ git clone https://github.com/david942j/kvm-kernel-example
 $ cd kvm-kernel-example && make
-$ sudo hypervisor/hypervisor.elf kernel/kernel.bin user/orw.elf /etc/os-release
+$ hypervisor/hypervisor.elf kernel/kernel.bin user/orw.elf /etc/os-release
 # NAME="Ubuntu"
 # VERSION="18.04.1 LTS (Bionic Beaver)"
 # ID=ubuntu
