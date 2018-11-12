@@ -26,7 +26,37 @@ $ ./gen.py
 ```
 NOTE: You have to install Python 2.x in advance.
 
-### How to run
+## Setup
+
+### Check KVM support
+
+Check if your CPU supports virtualization:
+```
+$ egrep '(vmx|svm)' /proc/cpuinfo
+```
+NOTE: CPUs in VM might not support virtualization (i.e. no nested virtualization).
+For example, EC2 on AWS doesn't support using KVM.
+
+### Install KVM device
+
+Check if KVM device exists:
+```
+$ ls -la /dev/kvm
+```
+
+If `/dev/kvm` is not found, you can enable it (on Ubuntu) with:
+```
+$ sudo apt install qemu-kvm
+```
+
+If you are not root, you need to add yourself into the `kvm` group to have permission for accessing `/dev/kvm`.
+```
+$ sudo usermod -a -G kvm `whoami`
+```
+Remember to logout and login to have the group changing effective.
+
+
+## How to run
 
 ```sh
 $ git clone https://github.com/david942j/kvm-kernel-example
