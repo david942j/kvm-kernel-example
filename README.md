@@ -18,6 +18,13 @@ A extremely simple Linux kernel, supports few syscalls.
 ### User
 
 Simple ELF(s) for testing our kernel.
+Pre-built user program was provided, and you can re-generate by the following commands:
+```sh
+$ pip2 install pwntools
+$ cd user
+$ ./gen.py
+```
+NOTE: You have to install Python 2.x in advance.
 
 ### How to run
 
