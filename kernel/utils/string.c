@@ -3,7 +3,7 @@
 /* no memory accessibility checks in these string functions */
 
 uint64_t strlen(const char *s) {
-  return strnlen(s, ~0ll);
+  return strnlen(s, (1ull << 63) - 1);
 }
 
 uint64_t strnlen(const char *s, uint64_t maxlen) {
