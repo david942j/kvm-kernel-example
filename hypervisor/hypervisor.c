@@ -13,7 +13,11 @@
 
 #define PS_LIMIT (0x200000)
 #define KERNEL_STACK_SIZE (0x4000)
-#define MAX_KERNEL_SIZE (PS_LIMIT - 0x5000 - KERNEL_STACK_SIZE)
+/*
+ * setup_paging() and init_pagetable() in kernel/mm/translate.c uses 5 pages in total
+ */
+#define PAGE_TABLE_SIZE (0x5000)
+#define MAX_KERNEL_SIZE (PS_LIMIT - PAGE_TABLE_SIZE - KERNEL_STACK_SIZE)
 #define MEM_SIZE (PS_LIMIT * 0x2)
 
 void read_file(const char *filename, uint8_t** content_ptr, size_t* size_ptr) {
@@ -35,7 +39,7 @@ void read_file(const char *filename, uint8_t** content_ptr, size_t* size_ptr) {
 }
 
 /* set rip = entry point
- * set rsp = MAX_KERNEL_SIZE + KERNEL_STACK_SIZE (the max address can be used)
+ * set rsp = PS_LIMIT (the max address can be used)
  *
  * set rdi = PS_LIMIT (start of free (unpaging) physical pages)
  * set rsi = MEM_SIZE - rdi (total length of free pages)
@@ -45,7 +49,7 @@ void setup_regs(VM *vm, size_t entry) {
   struct kvm_regs regs;
   if(ioctl(vm->vcpufd, KVM_GET_REGS, &regs) < 0) pexit("ioctl(KVM_GET_REGS)");
   regs.rip = entry;
-  regs.rsp = MAX_KERNEL_SIZE + KERNEL_STACK_SIZE; /* temporary stack */
+  regs.rsp = PS_LIMIT; /* temporary stack */
   regs.rdi = PS_LIMIT; /* start of free pages */
   regs.rsi = MEM_SIZE - regs.rdi; /* total length of free pages */
   regs.rflags = 0x2;
