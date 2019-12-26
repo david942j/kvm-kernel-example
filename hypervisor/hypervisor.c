@@ -43,7 +43,7 @@ void read_file(const char *filename, uint8_t** content_ptr, size_t* size_ptr) {
  *
  * set rdi = PS_LIMIT (start of free (unpaging) physical pages)
  * set rsi = MEM_SIZE - rdi (total length of free pages)
- * Kernel could use rdi and rsi to initalize its memory allocator.
+ * Kernel could use rdi and rsi to initialize its memory allocator.
  */
 void setup_regs(VM *vm, size_t entry) {
   struct kvm_regs regs;

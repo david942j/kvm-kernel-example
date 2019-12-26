@@ -108,5 +108,3 @@ int pf_to_prot(Elf64_Word pf) {
   if(pf & PF_X) ret |= PROT_X;
   return ret;
 }
-
-#undef _OFFSET

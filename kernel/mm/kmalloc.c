@@ -92,7 +92,7 @@ static void *int_kmalloc(uint64_t nb, int align) {
   }
   if(align != MALLOC_PAGE_ALIGN) panic("kmalloc.c#kmalloc: invalid alignment");
   // address to be returned must be aligned
-  // calculate the size of chunk to be splited such that
+  // calculate the size of chunk to be split such that
   // remain_top & (ALIGN - 1) == ALIGN-offsetof(chunk, next)
   uint64_t cur = (uint64_t) arena.top & (align - 1);
   uint64_t consume = (((align - offsetof(struct chunk, next)) - cur) & (align - 1));
