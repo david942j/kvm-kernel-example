@@ -20,11 +20,10 @@ A extremely simple kernel, supports few syscalls.
 Simple ELF(s) for testing our kernel.
 Pre-built user program was provided, and you can re-generate by the following commands:
 ```sh
-$ pip2 install pwntools
-$ cd user
-$ ./gen.py
+$ pip3 install pwntools
+$ user/gen.py
 ```
-NOTE: You have to install Python 2.x in advance.
+NOTE: You have to install Python 3.x in advance.
 
 ## Setup
 
