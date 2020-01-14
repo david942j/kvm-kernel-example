@@ -1,9 +1,9 @@
 # KVM-Kernel Example
 
-The source code are examples on my blog: [Learning KVM - implement your own Linux kernel](https://david942j.blogspot.com/2018/10/note-learning-kvm-implement-your-own.html).
+The source code are examples on my blog: [Learning KVM - implement your own kernel](https://david942j.blogspot.com/2018/10/note-learning-kvm-implement-your-own.html).
 
-I've described how to implement a KVM-based hypervisor and key points to implement Linux kernel on my blog.
-You can leave comments in the blog or file issues here if you have questions or find any bugs.
+I've described how to implement a KVM-based hypervisor and the key points to implement a kernel on my blog.
+You can leave comments in the blog or file issues here if you have questions or find any bug.
 
 ## Dir
 
@@ -13,7 +13,7 @@ The KVM-based hypervisor, its role is like qemu-system.
 
 ### Kernel
 
-A extremely simple Linux kernel, supports few syscalls.
+A extremely simple kernel, supports few syscalls.
 
 ### User
 
@@ -34,12 +34,12 @@ Check if your CPU supports virtualization:
 ```
 $ egrep '(vmx|svm)' /proc/cpuinfo
 ```
-NOTE: CPUs in VM might not support virtualization (i.e. no nested virtualization).
+NOTE: CPUs in a VM might not support virtualization (i.e. no nested virtualization).
 For example, EC2 on AWS doesn't support using KVM.
 
 ### Install KVM device
 
-Check if KVM device exists:
+Check if the KVM device exists:
 ```
 $ ls -la /dev/kvm
 ```
@@ -79,4 +79,4 @@ $ hypervisor/hypervisor.elf kernel/kernel.bin user/orw.elf /etc/os-release
 
 ### Environment
 
-I only tested the code on Ubuntu 18.04, but I expected it works on all KVM-supported x86 Linux distributions. File an issue if you find it's not true.
+I only tested the code on Ubuntu 18.04, but I expect it to work on all KVM-supported x86 Linux distributions. Please file an issue if you find it's not true.
