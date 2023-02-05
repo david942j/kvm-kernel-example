@@ -33,4 +33,4 @@ syscall_entry:
 
   mov rsp, [rip + user_stack]
   .byte 0x48
-  sysret
+  sysretq
