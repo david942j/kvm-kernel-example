@@ -141,7 +141,7 @@ int sys_execve(const char *path, char *const argv[], char *const envp[]) {
     "xor r15, r15;"
     "xor rbp, rbp;"
     ".byte 0x48;"
-    "sysret"
+    "sysretq"
     :: [entry]"r"(p.entry + p.load_addr), [rsp]"r"(p.rsp)
     : "r11", "rcx"
   );
